@@ -2,7 +2,7 @@
 .legend {
   display: block;
   position: absolute;
-  bottom: 20px;
+  bottom: 70px;
   left: 10px;
   z-index: 1000;
   background: rgba(15, 23, 42, 0.95);
