@@ -68,20 +68,20 @@
   background: var(--primary-dark);
 }
 
-/* Data info bar - TOP */
+/* Data info bar - Below filters */
 .data-info {
   position: absolute;
-  top: 70px;
+  top: 115px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(22, 33, 62, 0.95);
-  padding: 8px 14px;
+  padding: 6px 12px;
   border-radius: var(--radius-full);
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-muted);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   z-index: 1001;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -117,7 +117,7 @@
 /* Tablet and up */
 @media (min-width: 768px) {
   .data-info {
-    top: 80px;
+    top: 125px;
     padding: 8px 14px;
     font-size: 11px;
     gap: 8px;
