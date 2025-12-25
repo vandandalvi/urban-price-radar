@@ -1,0 +1,491 @@
+/* Price Badge Marker - Mobile First */
+
+.price-badge-wrapper {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+.price-badge {
+  background: rgba(22, 33, 62, 0.95);
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border: 2px solid;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+  min-width: 90px;
+  width: max-content;
+  max-width: 130px;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.price-badge::after {
+  content: '↗';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 10px;
+  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.price-badge:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop hover */
+@media (hover: hover) {
+  .price-badge::after {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .price-badge:hover::after {
+    opacity: 1;
+  }
+  
+  .price-badge:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* City-level badges (Mumbai, Thane, Navi Mumbai, Bhiwandi) - compact */
+.price-badge.city-level {
+  min-width: 85px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border-width: 2px;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.price-badge.city-level .price-badge-name {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.price-badge.city-level .price-badge-range {
+  font-size: 12px;
+}
+
+.price-badge.city-level .price-badge-confidence {
+  font-size: 8px;
+  margin-top: 2px;
+}
+
+/* State-level badges */
+.price-badge.state-level {
+  min-width: 70px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border-width: 1px;
+  background: rgba(30, 41, 59, 0.75);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  opacity: 0.85;
+}
+
+.price-badge.state-level .price-badge-name {
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 1px;
+  color: #cbd5e1;
+}
+
+.price-badge.state-level .price-badge-range {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.price-badge.state-level .price-badge-confidence {
+  font-size: 7px;
+  margin-top: 1px;
+  opacity: 0.7;
+}
+
+/* Country-level badges */
+.price-badge.country-level {
+  min-width: 65px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border-width: 1px;
+  background: rgba(51, 65, 85, 0.6);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0.75;
+}
+
+.price-badge.country-level .price-badge-name {
+  font-size: 9px;
+  font-weight: 600;
+  margin-bottom: 1px;
+  color: #9ca3af;
+}
+
+.price-badge.country-level .price-badge-range {
+  font-size: 9px;
+  color: #6b7280;
+}
+
+.price-badge.country-level .price-badge-confidence {
+  font-size: 6px;
+  margin-top: 1px;
+  opacity: 0.6;
+}
+
+/* Desktop hover for badges */
+@media (hover: hover) {
+  .price-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Confidence-based border colors */
+.price-badge.confidence-high {
+  border-color: var(--confidence-high);
+}
+
+.price-badge.confidence-medium {
+  border-color: var(--confidence-medium);
+}
+
+.price-badge.confidence-low {
+  border-color: var(--confidence-low);
+}
+
+/* Outside budget styling */
+.price-badge.outside-budget {
+  opacity: 0.4;
+  filter: grayscale(0.5);
+}
+
+.price-badge-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.price-badge-range {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.price-badge-range .unit-label {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+.price-badge-confidence {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* ========================================
+   POPUP - Mobile optimized
+   ======================================== */
+
+.price-popup .leaflet-popup-content-wrapper {
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+
+.price-popup .leaflet-popup-content {
+  margin: 0;
+  width: auto !important;
+}
+
+.price-popup .leaflet-popup-tip {
+  background: var(--surface);
+}
+
+.price-popup .leaflet-popup-close-button {
+  color: var(--text-muted) !important;
+  font-size: 20px;
+  padding: 8px 10px !important;
+  width: 36px;
+  height: 36px;
+}
+
+.popup-content {
+  padding: 14px 16px;
+  min-width: 200px;
+  max-width: 280px;
+}
+
+.popup-content h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  padding-right: 24px;
+}
+
+.popup-region {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.popup-prices {
+  background: var(--background);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.popup-price-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.popup-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.popup-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.popup-confidence {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.confidence-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.popup-confidence.confidence-high .confidence-dot {
+  background: var(--confidence-high);
+}
+
+.popup-confidence.confidence-medium .confidence-dot {
+  background: var(--confidence-medium);
+}
+
+.popup-confidence.confidence-low .confidence-dot {
+  background: var(--confidence-low);
+}
+
+.confidence-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.7;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* ========================================
+   DOT MODE - Mobile-first touch targets
+   ======================================== */
+
+.price-dot-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+
+.price-dot {
+  /* Mobile: minimum 44px touch target */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 3px;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Tap feedback - instant response */
+.price-dot:active {
+  transform: scale(0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop: smaller dots with hover */
+@media (hover: hover) and (min-width: 768px) {
+  .price-dot {
+    width: 36px;
+    height: 36px;
+    font-size: 7px;
+  }
+  
+  .price-dot:hover {
+    transform: scale(1.4);
+    z-index: 1000 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .price-dot:hover::before {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.price-dot::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.price-dot .dot-price {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: inherit;
+  line-height: 1;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Price tier colors */
+.price-dot.tier-affordable {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-color: #34d399;
+}
+
+.price-dot.tier-mid {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-color: #60a5fa;
+}
+
+.price-dot.tier-high {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-color: #fbbf24;
+}
+
+.price-dot.tier-premium {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: #f87171;
+}
+
+.price-dot.tier-ultra {
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  border-color: #c084fc;
+}
+
+/* Confidence ring on dots */
+.price-dot.confidence-high {
+  box-shadow: 0 0 0 2px #22c55e, 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.price-dot.confidence-medium {
+  box-shadow: 0 0 0 2px #eab308, 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.price-dot.confidence-low {
+  box-shadow: 0 0 0 2px #ef4444, 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Outside budget dots */
+.price-dot.outside-budget {
+  opacity: 0.35;
+  filter: grayscale(0.6);
+}
+
+/* Hovered badge (expanded from dot) */
+.price-badge.hovered {
+  z-index: 1000 !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   LIGHT THEME SUPPORT
+   ======================================== */
+
+[data-theme="light"] .price-badge {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .price-badge.city-level {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .price-badge.state-level {
+  background: rgba(248, 250, 252, 0.9);
+}
+
+[data-theme="light"] .price-badge.country-level {
+  background: rgba(241, 245, 249, 0.85);
+}
+
+[data-theme="light"] .price-badge-name {
+  color: #1e293b;
+}
+
+[data-theme="light"] .price-badge.state-level .price-badge-name,
+[data-theme="light"] .price-badge.country-level .price-badge-name {
+  color: #334155;
+}
+
+[data-theme="light"] .price-badge-range {
+  color: #059669;
+}
+
+[data-theme="light"] .price-badge-confidence {
+  color: #64748b;
+}
+
+[data-theme="light"] .price-dot {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .price-dot.confidence-high {
+  box-shadow: 0 0 0 2px #22c55e, 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .price-dot.confidence-medium {
+  box-shadow: 0 0 0 2px #eab308, 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .price-dot.confidence-low {
+  box-shadow: 0 0 0 2px #ef4444, 0 2px 6px rgba(0, 0, 0, 0.2);
+}

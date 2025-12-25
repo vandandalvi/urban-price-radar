@@ -1,0 +1,75 @@
+name: Update Price Data
+
+on:
+  # Mumbai: Monday 6:00 AM IST = 00:30 UTC
+  # Pune: Monday 6:00 PM IST = 12:30 UTC
+  schedule:
+    - cron: '30 0 * * 1'   # Mumbai - Monday 6 AM IST
+    - cron: '30 12 * * 1'  # Pune - Monday 6 PM IST
+  
+  # Allow manual trigger with region selection
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'Region to update'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - mumbai
+          - pune
+          - all
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: automation/requirements.txt
+      
+      - name: Install dependencies
+        run: |
+          cd automation
+          pip install -r requirements.txt
+      
+      - name: Determine region from schedule
+        id: region
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "region=${{ github.event.inputs.region }}" >> $GITHUB_OUTPUT
+          elif [ "$(date -u +%H)" -lt "6" ]; then
+            echo "region=mumbai" >> $GITHUB_OUTPUT
+          else
+            echo "region=pune" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Run price fetcher
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          cd automation
+          python fetch_prices.py --region ${{ steps.region.outputs.region }}
+      
+      - name: Copy to frontend public folder
+        run: |
+          cp data/prices.json frontend/public/data/prices.json
+      
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/prices.json frontend/public/data/prices.json
+          REGION="${{ steps.region.outputs.region }}"
+          git diff --staged --quiet || git commit -m "📊 Update ${REGION^} prices [automated]"
+          git push
