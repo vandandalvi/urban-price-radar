@@ -48,7 +48,7 @@ React Map UI
 
 ## Quick Start
 
-### 1. Data Automation (Optional - sample data included)
+### 1. Data Automation ( Optional - sample data included )
 
 ```bash
 cd automation
