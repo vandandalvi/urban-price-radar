@@ -187,7 +187,7 @@ function DataInfo({ version, generatedAt, visibleCount, totalCount }) {
   const updateDate = formatUpdateDate(generatedAt)
   
   return (
-    <div className="data-info">
+    <div className="data-info" title="Prices update every Monday, area-wise at scheduled times">
       {updateDate && (
         <>
           <span className="update-badge">
@@ -199,6 +199,8 @@ function DataInfo({ version, generatedAt, visibleCount, totalCount }) {
       )}
       <span>{visibleCount} / {totalCount} areas</span>
       <span className="separator">•</span>
+      <span className="update-schedule">Every Monday</span>
+      <span className="separator version">•</span>
       <span className="version">v{version}</span>
     </div>
   )
