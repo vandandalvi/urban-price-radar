@@ -1,5 +1,5 @@
 """
-Urban Price Radar - Flask Backend
+Urban Price Radar - Fast Backend
 
 Thin API layer serving price band data.
 Intentionally minimal - no database, no auth, no business logic.
