@@ -39,6 +39,7 @@ def load_prices() -> dict:
     
     with open(DATA_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
+        
 
 
 @app.route("/api/prices", methods=["GET"])
