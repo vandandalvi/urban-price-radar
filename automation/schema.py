@@ -2,7 +2,6 @@
 JSON Schema validation for Urban Price Radar price data.
 Ensures data integrity before committing to repository.
 """
-
 from pydantic import BaseModel, Field, field_validator
 from typing import Literal
 from datetime import datetime
