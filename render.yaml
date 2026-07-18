@@ -14,5 +14,5 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
-    # Auto-deploy on push to main branch
+    # Auto-deploy on push to main bran
     autoDeploy: true
