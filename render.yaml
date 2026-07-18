@@ -5,7 +5,7 @@ services:
   # Backend API Service
   - type : web
     name: urban-price-radar-api
-    runtime: python3
+    runtime: python
     region: singapore  # Closest to India for better latency
     plan: free
     buildCommand: pip install -r backend/requirements.txt
