@@ -14,6 +14,7 @@ A market-awareness tool that helps users quickly eliminate unaffordable areas us
 - ❌ A valuation engine
 - ❌ A recommendation system
 
+
 ## Architecture
 
 ```
